@@ -10,17 +10,12 @@ const bg = new Image();
 const fg = new Image();
 const pipeUp = new Image();
 const pipeBottom = new Image();
-const gameOver = new Image();
-const startImg = new Image();
-
 
 bird.src = 'img/bird.png';
 bg.src = 'img/bg.png';
 fg.src = 'img/fg.png';
 pipeUp.src = 'img/pipeUp.png';
 pipeBottom.src = 'img/pipeBottom.png';
-gameOver.src = 'img/gameover.png';
-startImg.src = 'img/strat.jpg'
 
 
 // при нажатии на кнопку
@@ -28,7 +23,6 @@ document.addEventListener('keydown' , moveUp);
 function moveUp(){
     yPos -=30;    
 }
-
 
 // создание блоков
 let pipe = [];
@@ -43,22 +37,19 @@ pipe[0] = {
 let xPos = 10;
 let yPos = 150;
 
-const grav = 0.8;
+const grav = 1.2;
 const gap = 120;                // отступы между блоков
 let score = 0;
 
 function start (callback) {
-    ctx.drawImage(startImg , 0 , 0);
     alert('Нажиймай на пробел и пролетай между блоков');
     callback();
 }
 
 
 function draw(){   
-
     // рисуем в canvas
     ctx.drawImage(bg, 0, 0);
-
         // создание блоков
     for (let i = 0; i< pipe.length ; i++ ) {
         
@@ -84,10 +75,8 @@ function draw(){
 
         if(pipe[i].x == 5){
             score++;
-            
         }
     }
-
 
     ctx.drawImage(fg, 0, 400);
     ctx.drawImage(bird , xPos, yPos);
@@ -100,11 +89,8 @@ function draw(){
     ctx.fillText("Score : "+score,10,cvs.height-20);
 
     requestAnimationFrame(draw);
-
 }
-
 start(draw);
-pipeBottom.onload = draw;
 
 
 
